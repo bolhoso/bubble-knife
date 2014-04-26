@@ -19,6 +19,7 @@ public class MainActivity extends Activity {
     @InjectThis(id = R.id.subtitle)
     TextView subTitle;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
