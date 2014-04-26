@@ -13,7 +13,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.tools.JavaFileObject;
 
-@SupportedAnnotationTypes("com.example.bubbleknife.api.InjectThis")
+@SupportedAnnotationTypes("com.bubbleknife.InjectThis")
 public class InjectorProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -27,7 +27,7 @@ public class InjectorProcessor extends AbstractProcessor {
 
         JavaFileObject file;
         try {
-            file = processingEnv.getFiler().createSourceFile("Blerg.java");
+            file = processingEnv.getFiler().createSourceFile("Blerg2.java");
             Writer out = file.openWriter();
             out.write("public class Blerg { "
                     + "public void lala () { ");
@@ -41,7 +41,7 @@ public class InjectorProcessor extends AbstractProcessor {
             out.flush();
             out.close();
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
 
         return true;

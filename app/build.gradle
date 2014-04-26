@@ -1,4 +1,10 @@
 apply plugin: 'android'
+apply plugin: 'android-apt'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':bubble-knife')
+}
 
 android {
     compileSdkVersion 19
@@ -16,9 +22,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    sourceSets {
+        java.srcDirs = ['src/main/java', 'GENERATED_FOLDER']
+
+    }
 }
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':bubble-knife')
+//Add this to your code
+apt {
+    arguments {
+        androidManifestFile variant.processResources.manifestFile
+        resourcePackageName 'com.bubbleknife'
+
+        logLevel 'INFO'
+        logFile '/var/log/aa.log'
+    }
 }
+
